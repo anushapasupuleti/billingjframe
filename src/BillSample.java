@@ -248,6 +248,8 @@ public class BillSample extends JFrame {
 		lblTotalAmount.setBounds(422, 323, 86, 14);
 		panel_2.add(lblTotalAmount);
 		
+		
+		//introduction to git
 		totalorder = new JTextField();
 		totalorder.setBounds(560, 326, 113, 20);
 		panel_2.add(totalorder);

@@ -64,7 +64,7 @@ public class ProSearch extends JFrame {
 		lblProduct.setBounds(30, 32, 46, 14);
 		panel.add(lblProduct);
 		protext.setText("search_button");
-         	
+       // protext.getText("search_buttton");	
 		JButton search_button = new JButton("");
 		search_button.setBounds(296, 32, 69, 23);
 		search_button.addActionListener(new ActionListener() {
@@ -120,6 +120,8 @@ public class ProSearch extends JFrame {
 		panel.add(textField_1);
 		textField_1.setColumns(10);
 		
+		
+		// introduction to git
 		JLabel lblPrice = new JLabel("price");
 		lblPrice.setBounds(30, 203, 46, 14);
 		panel.add(lblPrice);
