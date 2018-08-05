@@ -100,6 +100,8 @@ public class ProSearch extends JFrame {
 			
 		}
 		});
+		
+		//jlabel.lbltext=new jLabel("lbltext");
 		panel.add(search_button);
 		
 		JLabel lblProductname = new JLabel("productname");
