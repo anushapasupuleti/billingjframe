@@ -1,4 +1,5 @@
 import java.awt.EventQueue;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -17,15 +18,19 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import com.jgoodies.common.base.Strings;
+import java.awt.SystemColor;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
-public class ProSearch extends JFrame {
+public class ProDb extends JFrame {
+	
 
 	private static final String search_button = null;
 	private JPanel contentPane;
-	private JTextField searchProduct;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField protext;
+	private JTextField tpname;
+	private JTextField tpcode;
+	private JTextField tprice;
+	private JTextField protsearch;
 
 	/**
 	 * Launch the application.
@@ -46,28 +51,31 @@ public class ProSearch extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ProSearch() {
+	public  ProDb() {
+		setEnabled(false);
+		setBackground(SystemColor.textText);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 485, 336);
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(20, 11, 390, 240);
+		panel.setBounds(27, 37, 420, 252);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		
 		JLabel lblProduct = new JLabel("product");
-		lblProduct.setBounds(30, 32, 46, 14);
+		lblProduct.setBounds(12, 36, 69, 14);
 		panel.add(lblProduct);
 		//protext.setText("search_button");
        // protext.getText("search_buttton");	
-		JButton search_button = new JButton("Search");
-		search_button.setBounds(296, 32, 69, 23);
-		search_button.addActionListener(new ActionListener() {
+		JButton search_button_1 = new JButton("Search");
+		search_button_1.setBounds(296, 32, 69, 23);
+		search_button_1.addActionListener(new ActionListener() {
 			
 		
 			public void actionPerformed(ActionEvent e) {
@@ -79,20 +87,18 @@ public class ProSearch extends JFrame {
 							"jdbc:oracle:thin:@localhost:1521:orcl","system","Adminadmin20"); 
 
           // PreparedStatement st = con.prepareStatement("SELECT  * from product WHERE PRODUCTNAME LIKE '%'"+searchProduct.getText() +" % OR productcode LIKE % "+searchProduct.getText()+"");
-						String searchName =protext.getText();
+						String searchName =protsearch.getText();
 						
 			           PreparedStatement st = con.prepareStatement("select * FROM product where PRODUCTNAME ='"+ searchName+"'");
-
+			           
 					
 					
 					//List<Strings> productsNames =new LinkedList<Strings>();
 					ResultSet rs=st.executeQuery();  
 					while(rs.next()){ 
-						
-						textField_1.setText(rs.getString(2));
-						textField_2.setText(rs.getString(3));
-						searchProduct.setText(rs.getString(1));
-						
+						tpname.setText(rs.getString(1));
+						tpcode.setText(rs.getString(2));
+						tprice.setText(rs.getString(1));
 						
 						System.out.println(rs.getString(1)); 
 						System.out.println(rs.getString(2)); 
@@ -113,41 +119,49 @@ public class ProSearch extends JFrame {
 		});
 		
 		//jlabel.lbltext=new jLabel("lbltext");
-		panel.add(search_button);
+		panel.add(search_button_1);
 		
 		JLabel lblProductname = new JLabel("productname");
-		lblProductname.setBounds(30, 108, 81, 14);
+		lblProductname.setBounds(10, 108, 83, 14);
 		panel.add(lblProductname);
 		
-		searchProduct = new JTextField();
-		searchProduct.setBounds(143, 105, 138, 20);
-		panel.add(searchProduct);
-		searchProduct.setColumns(10);
+		tpname = new JTextField();
+		tpname.setBounds(143, 105, 138, 20);
+		panel.add(tpname);
+		tpname.setColumns(10);
 		
 		JLabel lblProduct_1 = new JLabel("product  code");
-		lblProduct_1.setBounds(30, 161, 93, 14);
+		lblProduct_1.setBounds(12, 161, 95, 14);
 		panel.add(lblProduct_1);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(143, 158, 138, 20);
-		panel.add(textField_1);
-		textField_1.setColumns(10);
+		tpcode = new JTextField();
+		tpcode.setBounds(143, 158, 138, 20);
+		panel.add(tpcode);
+		tpcode.setColumns(10);
 		
 		
 		// introduction to git
 		JLabel lblPrice = new JLabel("price");
-		lblPrice.setBounds(30, 203, 46, 14);
+		lblPrice.setBounds(10, 212, 46, 14);
 		panel.add(lblPrice);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(143, 209, 138, 20);
-		panel.add(textField_2);
-		textField_2.setColumns(10);
+		tprice = new JTextField();
+		tprice.setBounds(143, 209, 138, 20);
+		panel.add(tprice);
+		tprice.setColumns(10);
 		
-		protext = new JTextField();
-		protext.setBounds(145, 32, 125, 23);
-		panel.add(protext);
-		protext.setColumns(10);
+		protsearch = new JTextField();
+		protsearch.setBounds(145, 32, 125, 23);
+		panel.add(protsearch);
+		protsearch.setColumns(10);
+		
+		JLabel lblInvoiceNumber = new JLabel("invoice number");
+		lblInvoiceNumber.setBounds(296, 108, 72, 14);
+		panel.add(lblInvoiceNumber);
+		
+		JLabel label = new JLabel("");
+		label.setBounds(412, 108, 46, 14);
+		panel.add(label);
 		
 		//search_button.setText(prosrch);
 	}
